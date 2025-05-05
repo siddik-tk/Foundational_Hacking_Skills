@@ -1,6 +1,7 @@
 import nmap
 import requests
 
+
 scanner = nmap.PortScanner()
 print("nmap scanner....")
 print("<----------------------------------->")
@@ -51,11 +52,14 @@ elif int(response) == 4:
             ports = scanner[host][proto].keys()
             for port in ports:
                 service = scanner[host][proto][port]
+                vendor = []
+                vendor = service['product']
                 print(f"""port:   {port} 
 service: {service['name']}
 vendor:  {service['product']}
 version: {service.get('version',[])}
 """)
+
 
 else:
     print("scan invalid!")
@@ -64,36 +68,45 @@ print(scanner.scaninfo())
 print("ip status is ",scanner[ip_addr].state())
 print(scanner[ip_addr].all_protocols())
 
-vuln_check = input("do you want to check the vulnerability information from the scan(y/n):  ").lower().strip()
-def vuln_checker(vendor, version):
-    url = f"https://vulnerability.circl.lu/api/browse/{vendor}"
+def vuln_checker(vendor):
+    url = "https://services.nvd.nist.gov/rest/json/cves/2.0"
 
-    try:
-        responses = requests.get(url)
+    keyword = vendor
 
-        if responses.ok:
-            data = responses.json()
-            print(data)
-            print('-'*50)
-            cve_list = data.get("data", [])
-            if cve_list:
-                for cve in cve_list:
-                    print(f"cve_id: {cve['id']} \n cve_summary: {cve['summary']}")
-            else:
-                print("no data found")
+    params = {
+        'KeywordSearch': keyword,
+        'ResultsPerPage': 5
+    }
+
+    res = requests.get(url, params=params)
+    if res.ok:
+        result = res.json()
+        print(result)
+        for lst in result.get('vulnerabilities',[]):
+            cve_info = lst.get('cve',[])
+            cve_id = cve_info.get('id',[])
+            cve_desc = cve_info.get('descriptions')
+
+
+            print(f"cve id : {cve_id}")
+            print(f"cve desccription : {cve_desc[0]}")
+
+        feed = int(input("give a feed back(out of 5 in numbers):"))
+        if feed < 3:
+            print("we will improve")
         else:
-            print("unable to connect api (404)")
-    except Exception :
-        print("some error occured while fetching data from api!")
+            print("thanks for your useful time!")
+    else:
+        print("unable to fetch data from API(404)")
 
-if vuln_check == "y":
-    vendor = input("choose and input a vendor found in the scan: ")
-    version = input("enter the version for the vendor: ")
-    vuln_checker(vendor,version)
-else:
-    print("thank you!")
-    print("come back anytime...")
+vuln_check = input("do you want to check the vulnerability information from the scan(y/n):  ").lower().strip()
 
-# noinspection PyBroadException
+if vuln_check == 'y':
+    vuln_checker(vendor)
+
+
+
+
+
 
 
