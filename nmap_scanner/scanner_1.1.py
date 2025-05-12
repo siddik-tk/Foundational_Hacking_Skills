@@ -101,6 +101,7 @@ def vuln_checker(vendor):
     if res.ok:
         result = res.json()
         print(result)
+        cve_datas = result.get('vulnerabilities',[])
         for lst in result.get('vulnerabilities',[]):
             cve_info = lst.get('cve',[])
             cve_id = cve_info.get('id',[])
@@ -118,14 +119,23 @@ def vuln_checker(vendor):
             print("we will improve")
         else:
             print("thanks for your useful time!")
+
+        return cve_datas
     else:
         print("unable to fetch data from API(404)")
+
+
+
 if int(response) == 4:
     vuln_check = input("do you want to check the vulnerability information from the scan(y/n):  ").lower().strip()
+    all_cve_data = []
 
     if vuln_check == 'y':
         for vndor in vendor_list:
-            vuln_checker(vndor)
+            cve__data = vuln_checker(vndor)
+
+            if cve__data:
+                all_cve_data.append(cve__data)
 
 class headers(FPDF):
     def header(self):
@@ -159,6 +169,19 @@ if int(response) == 4:
         pdf.cell(200, 10, f"vendor: {data[1]}",ln=1)
         pdf.cell(200, 10, f"version: {data[2]}",ln=1)
 
+    pdf.set_font('helvetica', '', 14)
+    pdf.cell(0, 10, "Top CVEs:", ln=1)
+    for cve_entry in all_cve_data:
+        cve_info = cve_entry.get('cve', {})
+        cve_id = cve_info.get('id', 'N/A')
+        cve_descs = cve_info.get('descriptions', [])
+
+        pdf.multi_cell(0, 10, f"CVE ID: {cve_id}")
+        if cve_descs:
+            pdf.multi_cell(0, 10, f"Description: {cve_descs[0].get('value', 'No description available')}")
+        else:
+            pdf.multi_cell(0, 10, "Description: No description available.")
+        pdf.ln(5)
 
 pdf.set_font('helvetica','B',30)
 pdf.cell(0,50,text=" scan successful! ",align='c')
