@@ -16,7 +16,7 @@ def test_sqli(url, payload):
 
         response = requests.get(full_url, verify=False, proxies=proxies)
 
-        if "Cat Grinning" in response.text:
+        if "Cheshire Cat Grin" in response.text:
             return True
         else:
             return False
