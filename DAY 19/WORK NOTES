@@ -1,0 +1,44 @@
+file upload vulnerability:
+
+lab 1:
+
+just upload a executable file through image upload option
+
+lab 2:
+due to restriction only to png and jpeg.we cheats to be the p[hp as jpeg through burp repeater
+
+lab 3:
+ location my-account/avatar .file is also uploaded but not executed.
+problem: 1.code may have issue .
+	 2.location doesnt have execution previleg
+overcoming location issue (2)
+upload file with ../(better to encode in url format)
+
+it upoaded and while checking the broken image it gives an error
+
+Not Found
+The requested URL was not found on this server.
+Apache/2.4.41 (Ubuntu) Server at 4f2d429be2d2 Port 80
+
+its because the url cant understand this ../ - its better mov back the file our self
+
+lab 4:
+my-account/avatar - same location
+php files are not allowed Sorry - seems php exex files are blackliste
+it can be bypassed by the apache vulnerability found there by using htaccess file type to set new file type in the server
+
+lab 5:
+it whitelist to jpg and png
+
+virus.php.jpg	If server uses pathinfo() and looks at first extension only
+.php;.jpg or .php%20.jpg	Bypass weak filters
+Content-Type spoofing	Set header: Content-Type: image/jpeg in Burp
+Magic byte spoof	Add real JPEG header to a PHP file
+.phtml, .php5	Allowed by Apache as PHP
+.htaccess override	Make .abc treated as PHP
+
+these are the bypasses...
+its simply done by virus.php%00.png
+
+lab 6:
+Error: file is not a valid image Sorry, there was an error uploading your file. it gives a idea like they are analysing the whole  image wheteher it is image or not
