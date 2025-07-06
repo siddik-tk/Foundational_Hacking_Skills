@@ -1,0 +1,29 @@
+sqli:
+
+1.trying basic cmd
+
+worked!
+
+2.trying find out column by orderby cmd
+
+found as 2 coloumn
+
+3. trying dummy union
+
+worked
+
+4.try finding version by union attack
+
+worked and img added
+
+5.trying to find table names
+
+found and screeenshot added
+
+6.trying identifying all column
+
+found all columns and screen hsot added
+
+7.trying to retrive data from username and password column
+
+found out and sreenshot added
