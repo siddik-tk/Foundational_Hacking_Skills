@@ -1,0 +1,16 @@
+trying reflected xss
+
+<script>alert(hacked)</script> - not worked
+<img src=x onerror=alert(hacked)/> - worked
+
+trying stored xss - worked
+
+tried three payloads not woked
+
+it has captcha ,hence payload brute force not gonna work
+
+trying dom based xss
+
+it also worked with <img src=x onerror=alert(hacked)/>
+
+
