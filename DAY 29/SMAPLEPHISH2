@@ -1,0 +1,13 @@
+From: login-alert@secure-gmail.net
+Subject: Unusual sign-in attempt detected
+
+Hi,
+
+We've blocked a suspicious sign-in attempt to your Gmail account.
+If this was you, please confirm your identity:
+
+http://192.168.10.20/verify-now
+
+Failure to act in 24 hours may result in account suspension.
+
+Google Security Team
