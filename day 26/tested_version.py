@@ -66,7 +66,7 @@ def submit_form(form_details, base_url, payload):
 
 
 def scan_for_vulnerable_forms(url):
-    print(f"\n[***] Scanning Target: {url}")
+    print(f"\nScanning Target: {url}")
     forms = get_all_forms(url)
     print(f"[+] Detected {len(forms)} form(s) on {url}\n")
 
@@ -107,5 +107,5 @@ def log_result(url, form_details, payload, is_vulnerable):
 
 
 if __name__ == "__main__":
-    target = input("Enter URL to scan (e.g., http://localhost/dvwa/vulnerabilities/xss_r/): ")
+    target = input("Enter URL to scan : ")
     scan_for_vulnerable_forms(target)
