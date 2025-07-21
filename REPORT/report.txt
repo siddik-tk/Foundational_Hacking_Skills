@@ -1,0 +1,39 @@
+
+Strengths:
+
+✅ Clear objective
+✅ Legal disclaimer included
+✅ Technical stack mentioned (Flask + LocalTunnel)
+✅ Purpose and output (captured.txt)
+✅ Awareness takeaway message is good
+
+Phishing Login Page Simulation
+
+objective: Simulate a phishing login page to understand how attackers mimic trusted websites like Facebook.
+
+Project Overview
+
+* Built using Flask (Python)
+* Hosted locally using LocalTunnel
+* Captures test credentials in `captured.txt`
+* Designed for ethical cybersecurity testing and awareness
+
+About `captured.txt`
+
+* Stores test usernames and passwords entered on the phishing form
+* Helps simulate real-world phishing attacks for educational purposes
+* Includes timestamps to show when data was captured
+
+
+ Screenshot
+ REPORT/img/Screenshot 2025-07-21 at 12-26-18 Facebook – log in or sign up.png
+
+  Key Learnings
+
+* How phishing websites mimic real services
+* Importance of checking the domain name and SSL
+* Why browsers warn users about deceptive pages
+
+Awareness Message
+
+Always check the URL and enable 2FA. Phishing is the most common initial attack vector.
