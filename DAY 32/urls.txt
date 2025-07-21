@@ -1,0 +1,8 @@
+http://example.com
+
+https://bit.ly/abc123
+
+http://192.168.1.1/login
+
+
+ftp://notsecure.example.net
