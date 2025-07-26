@@ -1,8 +1,4 @@
 
-# print(f.read())
-# print("the file content in line 1: ",f.readline())
-# print("the file content in line 2: ",f.readline())
-# print("the file content in line 3: ",f.readline())
 try:
     f = open("//home//siddiktk//Music//song.txt//sung","w")
     f.write("\n musics are matter but!")
