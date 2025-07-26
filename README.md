@@ -1,4 +1,4 @@
-# HACKING_FOUNDATION 🔐
+Foundational_Hacking_Skills
 
 This repository contains my **red team journey** from foundational to intermediate concepts. It includes:
 
