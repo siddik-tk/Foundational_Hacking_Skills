@@ -23,4 +23,4 @@ def scan_urls(file_path):
         result = is_suspicious(url)
         print(f"[*] {url} → {result}")
 
-scan_urls("./urls.txt")
+scan_urls("urls.txt")
